@@ -104,6 +104,10 @@ et réglages).
 - Les tunnels demandent une clé ou un mot de passe enregistré (pas de 2FA interactif).
 - Alertes et reconnexion automatique : la page SSH doit avoir été ouverte depuis le lancement de Paseo.
 
+## Licence
+
+[MIT](LICENSE)
+
 ---
 
 ## English summary
@@ -117,3 +121,5 @@ the system OpenSSH client; no data leaves it.
 
 Install with `paseo plugin install git:LadysKillr/paseo-ssh-manager`. Requires Paseo 0.15+ and OpenSSH 8.4+
 on the daemon host. Run `npm test` for the isolated test suite.
+
+License: [MIT](LICENSE).
