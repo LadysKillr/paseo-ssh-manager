@@ -1,4 +1,4 @@
-import type { PaseoApi, PaseoTerminal } from "@getpaseo/client";
+import type { PaseoApi, PaseoTerminal } from "./paseo-types";
 import { copyText, TextInput, useToast } from "@getpaseo/plugin/client/ui";
 import { memo, useEffect, useRef, useState } from "react";
 import { Platform, Pressable, ScrollView, Text, View, type TextInput as NativeTextInput } from "react-native";

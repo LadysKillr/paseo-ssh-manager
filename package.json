@@ -1,7 +1,7 @@
 {
   "name": "paseo-ssh-manager",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Paseo plugin: SSH sessions manager inspired by MobaXterm (server list, terminals, SFTP-like file browser, multi-exec, monitoring)",
   "type": "module",
   "files": [

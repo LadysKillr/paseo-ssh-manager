@@ -13,6 +13,10 @@ mods=$(grep -o 'require("[^"]*")' tests/.tmp/bundle.js | sort -u | grep -v -E '"
 [ -z "$mods" ] || { echo "Modules interdits : $mods"; status=1; }
 grep -qw class tests/.tmp/bundle.js && { echo "'class' dans le bundle (Hermes)"; status=1; }
 grep -q 'window\.confirm\|window\.alert' tests/.tmp/bundle.js && { echo "Boîte native dans le bundle (bloque Electron)"; status=1; }
+echo "== Imports du code client (y compris 'import type' : Paseo les résout aussi à l'installation)"
+bad=$(grep -rhoE "from \"[^\".][^\"]*\"" client shared index.client.tsx | sed -E 's/from "(.*)"/\1/' | sort -u \
+  | grep -v -x -E "react|react/jsx-runtime|react-native|@tanstack/react-query|zod|@getpaseo/plugin|@getpaseo/plugin/client|@getpaseo/plugin/client/ui")
+[ -z "$bad" ] || { echo "Modules non fournis par Paseo importés par le client : $bad"; status=1; }
 echo "== Environnement de test"; bash tests/setup.sh || exit 1
 echo "== Tests serveur"; node tests/server.test.mjs || status=1
 echo "== Tests interface"; node tests/ui.test.mjs || status=1

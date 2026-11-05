@@ -58,11 +58,18 @@ export function keyPassphraseFile(keyPath: string | undefined): string | null {
 }
 
 /** Unix socket paths are limited to ~104 bytes; fall back to /tmp when the data dir is too deep. */
+/**
+ * Directory of the shared-connection sockets. A Unix socket path is limited to 104 bytes on macOS
+ * (108 on Linux), and ssh adds "/<40-char hash>" plus a 17-char temporary suffix while creating
+ * it: the directory itself must stay under ~40 characters. The plugin data dir is used when short
+ * enough, else /tmp (short on every system, unlike macOS's per-user os.tmpdir()).
+ */
 export function controlDir(): string {
   let dir = join(dataDir(), "cm");
-  if (dir.length > 60) {
+  if (dir.length > 40) {
     const uid = typeof process.getuid === "function" ? process.getuid() : 0;
-    dir = join(tmpdir(), `paseo-ssh-${uid}`);
+    const base = process.platform === "win32" ? tmpdir() : "/tmp";
+    dir = join(base, `paseo-ssh-${uid}`);
   }
   return ensureDir(dir);
 }

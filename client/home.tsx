@@ -1,4 +1,4 @@
-import type { PaseoApi, PaseoTerminal } from "@getpaseo/client";
+import type { PaseoApi, PaseoTerminal } from "./paseo-types";
 import { useSettings } from "@getpaseo/plugin/client";
 import { Icon, Modal, ScrollView, TextInput } from "@getpaseo/plugin/client/ui";
 import { useQuery } from "@tanstack/react-query";

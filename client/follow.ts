@@ -1,4 +1,4 @@
-import type { PaseoApi, PaseoTerminal } from "@getpaseo/client";
+import type { PaseoApi, PaseoTerminal } from "./paseo-types";
 import { useRpc } from "@getpaseo/plugin/client";
 import { useEffect, useState } from "react";
 import { terminalCwdRpc } from "../shared/rpc";

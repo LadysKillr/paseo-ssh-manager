@@ -1,4 +1,4 @@
-import type { PaseoApi, PaseoTerminal } from "@getpaseo/client";
+import type { PaseoApi, PaseoTerminal } from "./paseo-types";
 import type { PluginTheme } from "@getpaseo/plugin";
 import { useSettings } from "@getpaseo/plugin/client";
 import { Icon, Modal, ScrollView, TextInput, copyText, useToast } from "@getpaseo/plugin/client/ui";
