@@ -1,0 +1,9 @@
+{
+  "id": "ssh-manager",
+  "name": "SSH Manager",
+  "description": "MobaXterm-style SSH: all your servers on one page, native terminals, file browser, multi-exec and live monitoring.",
+  "media": [],
+  "requirements": {
+    "paseo": ">=0.15.0"
+  }
+}
