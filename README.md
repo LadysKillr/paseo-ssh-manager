@@ -1,125 +1,176 @@
-# SSH Manager pour Paseo
+<div align="center">
 
-Plugin [Paseo](https://github.com/getpaseo/paseo) qui apporte l'essentiel de MobaXterm : toutes vos
-sessions SSH sur une page, des terminaux complets, un explorateur de fichiers, le multi-exec, le
-monitoring des serveurs, la gestion des clés et des tunnels. Il fonctionne sur ordinateur (application
-de bureau ou web) et sur téléphone.
+# 🖥️ SSH Manager
 
-*English summary at the end.*
+**MobaXterm's essentials inside Paseo: every SSH server on one page, real terminals, Sftp, MultiExec and monitoring.**
 
-## Fonctionnalités
+[![License: MIT](https://img.shields.io/badge/license-MIT-8b5cf6.svg)](LICENSE)
+[![Paseo](https://img.shields.io/badge/Paseo-%E2%89%A5%200.15-1b1a26.svg)](https://paseo.sh)
+[![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux%20%7C%20web%20%7C%20iOS%20%7C%20Android-informational.svg)](#requirements)
 
-**Sessions**
-- Arbre « User sessions » avec dossiers imbriqués, état de chaque serveur (joignable, connecté, latence).
-- Import des sessions **MobaXterm** (`MobaXterm.ini` ou fichier `.mxtsessions` exporté) et de `~/.ssh/config`.
-- Quick connect (`user@hôte:port`), double-clic pour ouvrir, clic droit pour le menu.
-- Par session : clé privée, mot de passe (optionnel), rebond (ProxyJump), dossier et commande au démarrage,
-  reconnexion automatique, enregistrement automatique dans un journal.
+*[Version française](README.fr.md)*
 
-**Terminal**
-- Émulation xterm complète : couleurs (16, 256, RVB), gras / italique / souligné, curseur exact,
-  programmes plein écran (`vim`, `htop`, `less`), souris dans les programmes qui la demandent.
-- Comme MobaXterm : sélectionner copie, clic droit ou clic molette colle, molette pour l'historique,
-  Ctrl + molette pour zoomer.
-- Recherche dans l'historique (Ctrl+Shift+F), onglets (renommer, dupliquer, fermer les autres),
-  session terminée conservée avec « Entrée pour relancer ».
-- **MultiExec** : tous les terminaux côte à côte, chaque touche envoyée à tous (avec exclusions).
-- **Split** : 2 ou 4 terminaux indépendants côte à côte.
-- Journal de session (texte brut, sans codes couleur) et export de l'historique.
-- Alertes : mot-clé dans la sortie, fin d'une commande longue, réveil d'un terminal silencieux
-  (message, notification du bureau, cloche sur l'onglet).
+</div>
 
-**Fichiers (Sftp)**
-- Navigation, édition de fichiers texte, création, renommage, duplication, droits, suppression.
-- Multi-sélection (Ctrl / Maj + clic), glisser-déposer depuis l'ordinateur, envoi et téléchargement,
-  dossiers et sélections téléchargés en `.tar.gz`.
-- Copie directe d'un serveur à l'autre, et échanges avec la machine Paseo (utile pour les agents).
-- « Follow terminal folder » : l'explorateur suit le dossier du terminal actif.
+SSH Manager is a [Paseo](https://github.com/getpaseo/paseo) plugin that brings the day-to-day tools of
+MobaXterm to Paseo: a session tree with all your servers, full xterm-emulated terminals, an Sftp file
+browser, MultiExec, server monitoring, SSH key management and tunnels. It works in the desktop app, in the
+browser and on your phone, and everything runs on the Paseo daemon host with the system OpenSSH client —
+no data leaves it.
 
-**Outils**
-- Monitoring : CPU, mémoire, réseau, uptime, utilisateurs, disques (barre d'état et vue détaillée).
-- Clés SSH (façon MobaKeyGen) : générer, importer (y compris `.ppk` avec puttygen), publier la clé
-  publique sur les serveurs, vérifier, révoquer.
-- Tunnels SSH (façon MobaSSHTunnel) : local `-L`, distant `-R`, SOCKS `-D`, démarrage automatique.
+## ✨ Features
 
-**Mobile**
-- Barre d'onglets en bas, grandes zones tactiles, rangée de touches (Échap, Tab, Ctrl, Alt, flèches…),
-  glisser pour l'historique, le clavier ne recouvre pas le terminal.
+### Sessions
+- **Session tree** — nested folders, live status of each server (reachable, connected, latency).
+- **Import** — MobaXterm sessions (`MobaXterm.ini` or an exported `.mxtsessions` file) and `~/.ssh/config`.
+- **Quick connect** — `user@host:port`, double-click to open, right-click for the context menu.
+- **Per-session options** — private key, optional password, jump host (ProxyJump), start folder and command,
+  auto-reconnect, automatic session log.
 
-## Prérequis
+### Terminal
+- **Full xterm emulation** — 16 / 256 / RGB colours, bold / italic / underline, exact cursor, full-screen
+  programs (`vim`, `htop`, `less`), mouse for programs that request it.
+- **MobaXterm mouse habits** — select to copy, right or middle click to paste, wheel for scrollback,
+  Ctrl + wheel to zoom.
+- **Tabs** — rename, duplicate, close others; a finished session stays open with "Press Enter to restart".
+- **Search** in the scrollback (Ctrl+Shift+F) and export of the history.
+- **MultiExec** — all terminals side by side, every key sent to all of them (with per-terminal exclusion),
+  plus multi-paste.
+- **Split** — 2 or 4 independent terminals side by side.
+- **Session logs** — plain text, colour codes stripped.
+- **Alerts** — keyword in the output, end of a long command, silent terminal waking up (toast, desktop
+  notification, bell on the tab).
 
-- Paseo **0.15** ou plus récent.
-- Sur la machine qui fait tourner le daemon Paseo : le client **OpenSSH 8.4+** (`ssh`, `ssh-keygen`)
-  et `tar`. `puttygen` (paquet `putty-tools`) seulement pour importer des clés `.ppk`.
-- Monitoring et « Follow terminal folder » : serveurs Linux.
+### Files (Sftp)
+- **Browse and edit** — text editor, create, rename, duplicate, permissions, delete.
+- **Multi-select** (Ctrl / Shift + click), **drag and drop** from your computer, upload and download;
+  folders and selections are downloaded as `.tar.gz`.
+- **Server to server copy**, and exchanges with the Paseo host (handy for agents).
+- **Follow terminal folder** — the browser follows the directory of the active terminal.
 
-## Installation
+### Tools
+- **Monitoring** — CPU, memory, network, uptime, users, disks, in a status bar and a detailed view.
+- **SSH keys** (MobaKeyGen-like) — generate, import (including `.ppk` with puttygen), publish the public key
+  to your servers, check, revoke, delete. Private keys stay in a `0700` vault on the daemon host.
+- **SSH tunnels** (MobaSSHTunnel-like) — local `-L`, remote `-R`, SOCKS `-D`, auto-start.
+
+### Mobile
+- Bottom tab bar, large touch targets, key row (Esc, Tab, Ctrl, Alt, arrows, ^C, paste, search, zoom),
+  swipe for scrollback, and the keyboard never covers the terminal.
+
+## 🚀 Getting started
+
+### Requirements
+
+- **Paseo 0.15** or newer.
+- On the machine running the Paseo daemon: **OpenSSH 8.4+** (`ssh`, `ssh-keygen`) and `tar`.
+  `puttygen` (package `putty-tools`) only to import `.ppk` keys.
+- Monitoring and "Follow terminal folder" need **Linux** servers.
+
+### Install
 
 ```bash
 paseo plugin install git:LadysKillr/paseo-ssh-manager
+paseo plugin ls        # ssh-manager should be "running"
 ```
 
-ou depuis un dossier local :
+You can also paste `git:LadysKillr/paseo-ssh-manager` into **Settings → Plugins → Plugin source**, or
+install from a local clone:
 
 ```bash
 git clone https://github.com/LadysKillr/paseo-ssh-manager.git
 paseo plugin install ./paseo-ssh-manager
 ```
 
-L'entrée **SSH** apparaît dans la barre latérale de Paseo. Un panneau « SSH » est aussi disponible dans
-chaque workspace, et les réglages sont dans les paramètres du plugin.
+An **SSH** entry appears in Paseo's sidebar. An "SSH" panel is also available in every workspace.
 
-## Fonctionnement et données
+### Update and uninstall
 
-- Tout s'exécute sur la machine du daemon Paseo, avec le client OpenSSH du système : vos clés, votre
-  agent SSH et `~/.ssh/config` fonctionnent normalement. Aucune donnée n'est envoyée ailleurs.
-- Les connexions sont partagées (ControlMaster) : une fois un terminal authentifié, l'explorateur,
-  le monitoring et les autres outils réutilisent sa connexion (y compris avec mot de passe ou 2FA).
-- Les terminaux sont de vrais terminaux Paseo ; le plugin les affiche à l'aide de l'émulateur xterm
-  fourni par Paseo.
-- Données du plugin : `~/.paseo/plugin-data/ssh-manager/` (sessions, journaux, coffre de clés en
-  `0700` / `0600`). Un mot de passe enregistré est stocké en clair dans un fichier `0600` et transmis
-  à ssh par `SSH_ASKPASS`, jamais en argument de commande : une clé reste préférable.
-- Les nouvelles clés d'hôte sont acceptées à la première connexion (`StrictHostKeyChecking=accept-new`).
+```bash
+paseo plugin update ssh-manager
+paseo plugin remove ssh-manager
+```
 
-## Développement
+## 🎛️ Usage
+
+Settings live in **Settings → Plugins → SSH Manager** (the interface is in French):
+
+| Setting | Default | Description |
+| --- | --- | --- |
+| Thème (appearance) | MobaXterm | MobaXterm dark look, or follow the Paseo theme. |
+| Taille de police | 13 | Also Ctrl + wheel, Ctrl + / Ctrl −. |
+| Copier à la sélection | On | Selecting text in a terminal copies it. |
+| Clic droit pour coller | On | Right click pastes instead of opening the menu. |
+| Confirmer la fermeture | On | Ask before closing a terminal tab. |
+| Remote monitoring | On | Show the monitoring status bar under the terminal. |
+| Rafraîchissement | 5 s | Seconds between two monitoring refreshes. |
+
+"Follow terminal folder" is a checkbox at the bottom of the Sftp panel, as in MobaXterm.
+
+**Handy shortcuts**
+
+| Action | How |
+| --- | --- |
+| Open a session / edit a file | Double-click |
+| Context menu | Right click (on a session, folder, file or tab) |
+| Search in a terminal | Ctrl+Shift+F |
+| Zoom | Ctrl + wheel |
+| Paste in MultiExec | Ctrl+V or Shift+Insert |
+
+## ⚙️ How it works
+
+- **`index.server.ts`, `server/`** — runs on the daemon host: ssh commands with shared connections
+  (ControlMaster), so once a terminal is authenticated the Sftp browser, monitoring and tools reuse it,
+  even with a password or 2FA.
+- **`server/term-mirror.ts`** — terminals are real Paseo terminals; the plugin mirrors them with the xterm
+  emulator shipped with Paseo to render colours, cursor and mouse.
+- **`server/keys.ts`, `server/tunnels.ts`, `server/term-features.ts`** — key vault, tunnels, logs and alerts.
+- **`index.client.tsx`, `client/`** — the React Native interface (desktop, web and mobile layouts).
+- **`shared/`** — RPC contracts and settings.
+
+Plugin data is stored in `~/.paseo/plugin-data/ssh-manager/` (sessions, logs, key vault, `0700` / `0600`).
+A saved password is kept in a `0600` file and handed to ssh through `SSH_ASKPASS`, never as a command
+argument — a key is still the better choice. New host keys are accepted on first connection
+(`StrictHostKeyChecking=accept-new`).
+
+## ⚠️ Limitations
+
+- SSH and Sftp only: no RDP, VNC, Telnet or serial sessions.
+- Passwords saved in MobaXterm are encrypted and cannot be imported.
+- Tunnels need a key or a saved password (no interactive 2FA).
+- Alerts and auto-reconnect run while the SSH page has been opened since Paseo started.
+
+## 🩺 Troubleshooting
+
+| Problem | Fix |
+| --- | --- |
+| `Could not resolve type dependency` on install | Update to v1.0.1 or newer: `paseo plugin update ssh-manager`. |
+| Server shown unreachable | Check `ssh user@host` works from the daemon host; the plugin uses the same OpenSSH client and `~/.ssh/config`. |
+| Sftp or monitoring asks for a password again | Open a terminal on the session first: the other tools reuse its authenticated connection. |
+| Plugin not "running" | `paseo plugin logs ssh-manager`, then `paseo plugin reload ssh-manager`. |
+| Monitoring empty | Monitoring reads `/proc`: Linux servers only. |
+
+## 🛠️ Development
 
 ```bash
 npm install
-npm test        # typecheck, contrôles du bundle, tests serveur et tests d'interface
+npm test        # typecheck, bundle checks, server tests and UI tests
 ```
 
-`npm test` démarre un environnement isolé : un serveur OpenSSH de test sur `127.0.0.1:2222` et un
-daemon Paseo de test sur `127.0.0.1:6790`, puis pilote l'interface web avec Chromium (Playwright).
-Rien n'est écrit dans votre `~/.paseo` ni dans `~/.ssh`. Voir [tests/README.md](tests/README.md).
+`npm test` starts an isolated environment — a throwaway OpenSSH server on `127.0.0.1:2222` and a test Paseo
+daemon on `127.0.0.1:6790` — then drives the web UI with Chromium (Playwright). Nothing is written to your
+`~/.paseo` or `~/.ssh`. See [tests/README.md](tests/README.md).
 
-Structure : `index.server.ts` et `server/` (daemon : ssh, fichiers, émulation des terminaux, clés,
-tunnels, journaux), `index.client.tsx` et `client/` (interface React Native), `shared/` (contrats RPC
-et réglages).
+## 🗺️ Roadmap
 
-## Limites connues
+- Screenshots in this README.
+- X11 forwarding and more session types.
+- Session sharing between Paseo hosts.
 
-- Pas de session RDP, VNC, Telnet ou série (seulement SSH et SFTP).
-- Les mots de passe enregistrés dans MobaXterm sont chiffrés et ne peuvent pas être importés.
-- Les tunnels demandent une clé ou un mot de passe enregistré (pas de 2FA interactif).
-- Alertes et reconnexion automatique : la page SSH doit avoir été ouverte depuis le lancement de Paseo.
+## 🤝 Contributing
 
-## Licence
+Issues and pull requests are welcome. Please run `npm test` before opening a pull request.
 
-[MIT](LICENSE)
+## 📄 License
 
----
-
-## English summary
-
-SSH Manager is a [Paseo](https://github.com/getpaseo/paseo) plugin that brings MobaXterm's essentials to
-Paseo: a session tree (imports MobaXterm sessions and `~/.ssh/config`), full xterm-emulated terminals
-(colours, mouse, search, split view, MultiExec), an SFTP-like file browser (multi-select, drag and drop,
-`.tar.gz` downloads, server-to-server copy), server monitoring, SSH key management, SSH tunnels, session
-logs, alerts, auto-reconnect and a phone-friendly layout. Everything runs on the Paseo daemon host with
-the system OpenSSH client; no data leaves it.
-
-Install with `paseo plugin install git:LadysKillr/paseo-ssh-manager`. Requires Paseo 0.15+ and OpenSSH 8.4+
-on the daemon host. Run `npm test` for the isolated test suite.
-
-License: [MIT](LICENSE).
+[MIT](LICENSE) © LadysKillr ([@LadysKillr](https://github.com/LadysKillr))

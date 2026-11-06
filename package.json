@@ -13,7 +13,8 @@
     "server/",
     "shared/",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "README.fr.md"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
