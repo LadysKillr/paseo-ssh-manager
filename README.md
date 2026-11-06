@@ -56,6 +56,11 @@ no data leaves it.
   to your servers, check, revoke, delete. Private keys stay in a `0700` vault on the daemon host.
 - **SSH tunnels** (MobaSSHTunnel-like) — local `-L`, remote `-R`, SOCKS `-D`, auto-start.
 
+### Interface
+- **Paseo theme by default** — follows Paseo's light or dark theme; a MobaXterm look is one setting away.
+- **Auto-hide side panel** — more room for terminals; hover the left edge to bring sessions and Sftp back.
+- **Resizable side panel**, double-click everywhere, right-click menus like MobaXterm.
+
 ### Mobile
 - Bottom tab bar, large touch targets, key row (Esc, Tab, Ctrl, Alt, arrows, ^C, paste, search, zoom),
   swipe for scrollback, and the keyboard never covers the terminal.
@@ -117,7 +122,8 @@ Settings live in **Settings → Plugins → SSH Manager** (the interface is in F
 
 | Setting | Default | Description |
 | --- | --- | --- |
-| Thème (appearance) | MobaXterm | MobaXterm dark look, or follow the Paseo theme. |
+| Thème (appearance) | Paseo | Follow the Paseo theme (light or dark), or MobaXterm's dark look. |
+| Masquer la barre latérale | Off | Hide the sessions / Sftp panel; it slides back in when the mouse reaches the left edge. |
 | Taille de police | 13 | Also Ctrl + wheel, Ctrl + / Ctrl −. |
 | Copier à la sélection | On | Selecting text in a terminal copies it. |
 | Clic droit pour coller | On | Right click pastes instead of opening the menu. |
@@ -125,7 +131,8 @@ Settings live in **Settings → Plugins → SSH Manager** (the interface is in F
 | Remote monitoring | On | Show the monitoring status bar under the terminal. |
 | Rafraîchissement | 5 s | Seconds between two monitoring refreshes. |
 
-"Follow terminal folder" is a checkbox at the bottom of the Sftp panel, as in MobaXterm.
+"Follow terminal folder" is a checkbox at the bottom of the Sftp panel, as in MobaXterm. The side panel can also
+be hidden straight from the toolbar (**Masquer barre** / **Barre fixe**).
 
 **Handy shortcuts**
 

@@ -47,6 +47,11 @@ de bureau ou web) et sur téléphone.
   publique sur les serveurs, vérifier, révoquer.
 - Tunnels SSH (façon MobaSSHTunnel) : local `-L`, distant `-R`, SOCKS `-D`, démarrage automatique.
 
+**Interface**
+- Thème Paseo par défaut (clair ou sombre), apparence MobaXterm en option dans les réglages.
+- Barre latérale (sessions / Sftp) redimensionnable et masquable : elle réapparaît quand la souris
+  touche le bord gauche (bouton « Masquer barre » dans la barre d'outils ou réglage du plugin).
+
 **Mobile**
 - Barre d'onglets en bas, grandes zones tactiles, rangée de touches (Échap, Tab, Ctrl, Alt, flèches…),
   glisser pour l'historique, le clavier ne recouvre pas le terminal.
