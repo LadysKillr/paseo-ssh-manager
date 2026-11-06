@@ -59,7 +59,7 @@ export type { TabModel };
 export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, page }: SshAppProps) {
   const settings = useSettings(prefsSettings);
   const prefs = settings.status === "ready" ? settings.values : null;
-  const moba = (prefs?.appearance ?? "mobaxterm") === "mobaxterm";
+  const moba = (prefs?.appearance ?? "paseo") === "mobaxterm";
   const s = useStyles(moba ? MOBA_THEME : theme, moba, theme);
   const toast = useToast();
   const qc = useQueryClient();
@@ -106,6 +106,19 @@ export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, pag
     }),
   ).current;
   const wide = width >= 900;
+  const autoHide = !!prefs?.sidebarAutoHide;
+  /** Auto-hide: the panel is currently slid in because the mouse is on the left edge / over it. */
+  const [peek, setPeek] = useState(false);
+  const peekTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setPeekSoon = (v: boolean) => {
+    if (peekTimer.current) clearTimeout(peekTimer.current);
+    if (v) setPeek(true);
+    else peekTimer.current = setTimeout(() => setPeek(false), 350);
+  };
+  const toggleAutoHide = () => {
+    if (settings.status === "ready") void settings.save({ ...settings.values, sidebarAutoHide: !settings.values.sidebarAutoHide }, settings.revision);
+    setPeek(false);
+  };
   /** Phone-sized layout: bottom tab bar, tools in a sheet. */
   const mobile = width > 0 && width < 640;
   /** Finger input: bigger rows, terminal keys bar, swipe to scroll. */
@@ -690,6 +703,7 @@ export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, pag
       <ToolButton s={s} icon="Cable" label="Tunnels" color={s.x.orange} active={selection.mainView === "tunnels"} onPress={() => showView("tunnels")} />
       <ToolButton s={s} icon="ScrollText" label="Journaux" color={s.x.green} active={selection.mainView === "logs"} onPress={() => showView("logs")} />
       <View style={{ flex: 1 }} />
+      {wide ? <ToolButton s={s} icon={autoHide ? "PanelLeftOpen" : "PanelLeftClose"} label={autoHide ? "Barre fixe" : "Masquer barre"} color={s.c.foregroundMuted} active={autoHide} onPress={toggleAutoHide} /> : null}
       {page ? <ToolButton s={s} icon="Settings" label="Workspace" color={s.c.foregroundMuted} onPress={() => setPickWorkspace(true)} /> : null}
     </View>
   );
@@ -867,6 +881,24 @@ export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, pag
         </View>
       ) : wide ? (
         <View style={{ flex: 1, flexDirection: "row" }}>
+          {autoHide ? (
+            <View style={{ width: 6, backgroundColor: s.c.border, zIndex: 20 }} {...webProps({ onMouseEnter: () => setPeekSoon(true), onMouseLeave: () => setPeekSoon(false) })}>
+              {peek ? (
+                <View
+                  style={[
+                    { position: "absolute", top: 0, bottom: 0, left: 0, width: 38 + sidebarWidth, backgroundColor: s.c.surface0, borderRightWidth: 1, borderRightColor: s.c.border, zIndex: 30 },
+                    webStyle({ boxShadow: "4px 0 12px rgba(0,0,0,0.35)" }),
+                  ]}
+                >
+                  {quickBar}
+                  <View style={{ flex: 1, flexDirection: "row" }}>
+                    {strip}
+                    <View style={{ flex: 1, backgroundColor: s.c.surface0 }}>{sideContent}</View>
+                  </View>
+                </View>
+              ) : null}
+            </View>
+          ) : (
           <View style={{ width: 38 + sidebarWidth }}>
             {quickBar}
             <View style={{ flex: 1, flexDirection: "row" }}>
@@ -874,8 +906,9 @@ export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, pag
               <View style={{ flex: 1, backgroundColor: s.c.surface0 }}>{sideContent}</View>
             </View>
           </View>
+          )}
           {/* Drag to resize the left panel (double-click: default width). */}
-          <View
+          {autoHide ? null : (<View
             {...splitter.panHandlers}
             accessibilityLabel="Redimensionner la barre latérale"
             {...webProps({ onMouseDown: () => splitterPress.current("splitter", () => undefined, () => saveSideRef.current(360)) })}
@@ -889,7 +922,7 @@ export function SshApp({ theme, paseo, workspaceId, localDir, openWorkspace, pag
               },
               webStyle({ cursor: "col-resize" }),
             ]}
-          />
+          />)}
           {mainArea}
         </View>
       ) : (

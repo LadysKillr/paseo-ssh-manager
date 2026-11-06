@@ -61,10 +61,16 @@ function SshSettings({ theme }: PluginSurfaceProps) {
             hint="MobaXterm : reprend les couleurs sombres de MobaXterm. Paseo : suit le thème de l'application."
             value={values.appearance}
             options={[
-              { label: "MobaXterm", value: "mobaxterm" },
               { label: "Paseo", value: "paseo" },
+              { label: "MobaXterm", value: "mobaxterm" },
             ]}
             onValueChange={(v) => void settings.save({ ...values, appearance: v as "mobaxterm" | "paseo" }, settings.revision)}
+          />
+          <SettingsSwitch
+            label="Masquer la barre latérale"
+            hint="La barre latérale (sessions / Sftp) est cachée et réapparaît quand la souris touche le bord gauche."
+            value={values.sidebarAutoHide}
+            onValueChange={(v) => void settings.save({ ...values, sidebarAutoHide: v }, settings.revision)}
           />
           <SettingsSwitch
             label="Remote monitoring"
