@@ -2,6 +2,10 @@
 
 *[English version](README.md)*
 
+![SSH Manager : terminal et explorateur Sftp](screenshots/1-terminal-sftp.jpg)
+
+Captures : voir la section [Screenshots](README.md#-screenshots) du README anglais.
+
 Plugin [Paseo](https://github.com/getpaseo/paseo) qui apporte l'essentiel de MobaXterm : toutes vos
 sessions SSH sur une page, des terminaux complets, un explorateur de fichiers, le multi-exec, le
 monitoring des serveurs, la gestion des clés et des tunnels. Il fonctionne sur ordinateur (application

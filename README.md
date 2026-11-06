@@ -10,6 +10,8 @@
 
 *[Version française](README.fr.md)*
 
+<img src="screenshots/1-terminal-sftp.jpg" alt="SSH Manager: terminal and Sftp browser" width="900">
+
 </div>
 
 SSH Manager is a [Paseo](https://github.com/getpaseo/paseo) plugin that brings the day-to-day tools of
@@ -57,6 +59,24 @@ no data leaves it.
 ### Mobile
 - Bottom tab bar, large touch targets, key row (Esc, Tab, Ctrl, Alt, arrows, ^C, paste, search, zoom),
   swipe for scrollback, and the keyboard never covers the terminal.
+
+## 📸 Screenshots
+
+All screenshots use demo servers and the Paseo theme.
+
+| | |
+| :---: | :---: |
+| <img src="screenshots/2-sessions.jpg" alt="Session tree" width="440"> | <img src="screenshots/3-multiexec.jpg" alt="MultiExec" width="440"> |
+| **Session tree** — folders, status, quick connect | **MultiExec** — type once, run on every server |
+| <img src="screenshots/4-htop.jpg" alt="htop in the terminal" width="440"> | <img src="screenshots/5-monitoring.jpg" alt="Monitoring" width="440"> |
+| **Full xterm emulation** — colours, full-screen programs | **Monitoring** — CPU, memory, network, disks |
+
+**On a phone**
+
+| | | | |
+| :---: | :---: | :---: | :---: |
+| <img src="screenshots/mobile-1-sessions.jpg" alt="Sessions on a phone" width="200"> | <img src="screenshots/mobile-2-terminal.jpg" alt="Terminal on a phone" width="200"> | <img src="screenshots/mobile-3-files.jpg" alt="Files on a phone" width="200"> | <img src="screenshots/mobile-4-monitoring.jpg" alt="Monitoring on a phone" width="200"> |
+| Sessions | Terminal and key row | Files | Monitoring |
 
 ## 🚀 Getting started
 
@@ -163,7 +183,6 @@ daemon on `127.0.0.1:6790` — then drives the web UI with Chromium (Playwright)
 
 ## 🗺️ Roadmap
 
-- Screenshots in this README.
 - X11 forwarding and more session types.
 - Session sharing between Paseo hosts.
 
